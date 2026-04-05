@@ -113,7 +113,7 @@ export class ApplyImageBorder implements PluginValue {
 		this.viewUpdate = update
 
 		const images = update.view.dom.getElementsByTagName("img")
-		Array.from(images).forEach((img: any) => {
+		Array.from(images).forEach((img: HTMLImageElement) => {
 			this.applyBorderRadius(img)
 			this.applyBorderWidth(img)
 			this.applyBorderColor(img)
@@ -273,10 +273,10 @@ class ImageStyleSettingTab extends PluginSettingTab {
 					})
 			)
 
-		containerEl.createEl("h2", { text: "Border Stroke" });
+		new Setting(containerEl).setName('Border stroke').setHeading();
 
 		const borderWidthSetting = new Setting(containerEl)
-			.setName("Border Width")
+			.setName("Border width")
 			.setDesc("Select the global border width for images.")
 			.addExtraButton(button => button
 				.setIcon('reset')
@@ -302,12 +302,12 @@ class ImageStyleSettingTab extends PluginSettingTab {
 					})
 			);
 
-		containerEl.createEl("h2", { text: "Border Color" });
+		new Setting(containerEl).setName('Border color').setHeading();
 
 		// Add theme toggle
 		const borderColorContrastModeSetting = new Setting(containerEl)
 		borderColorContrastModeSetting
-			.setName("Contrast Mode")
+			.setName("Contrast mode")
 			.setDesc("Enable border color contrast based on theme")
 			.addToggle((toggle) => {
 				toggle.setValue(this.plugin.settings.isContrastBased);
@@ -320,7 +320,7 @@ class ImageStyleSettingTab extends PluginSettingTab {
 		// Add color picker with theme support
 		const borderColorSetting = new Setting(containerEl)
 		borderColorSetting
-			.setName("Border Color")
+			.setName("Border color")
 			.setDesc("Color for image borders")
 			.addColorPicker((color) => {
 				color.setValue(this.plugin.settings.borderColor);
@@ -330,6 +330,6 @@ class ImageStyleSettingTab extends PluginSettingTab {
 				})
 			})
 			.setDisabled(this.plugin.settings.isContrastBased)
-			.setTooltip("Disabled if Contrast Mode is enabled")
+			.setTooltip("Disabled if contrast mode is enabled")
 	}
 }
