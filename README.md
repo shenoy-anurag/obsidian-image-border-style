@@ -6,13 +6,15 @@ Have nice rounded borders (or not) for images ranging from no-border, to a 2px b
 
 And, tinker with more image border related settings.
 
-Features:
+### Features
 - Lightweight, negligible impact on performance.
 - Default border radius is same as one in Notion.
 - 9 sizes from no-border to 4XL border radius.
 - Ability to choose Border Width (6 sizes from 0px to 5px).
 - Automatic Theme-Aware Border Color (faint grey for dark mode, and charcoal for light mode).
 - Custom Border Color setting.
+
+**Note:** Setting changes may not reflect until you switch pages. I'm trying to solve this while adhering to Plugin guidelines.
 
 ![Demonstration of the Obisidian Image Border Style Plugin](./static/Obisidian%20Image%20Border%20Style%20Plugin.gif)
 
@@ -29,8 +31,8 @@ Until it's approved by the Obsidian team, the plugin will need to be installed m
 
 ## Development
 1. Clone the repository: `git clone https://github.com/shenoy-anurag/obsidian-image-border-style.git`.
-2. Run `yarn install` to install dependencies.
-3. Run `yarn run build` to build the plugin.
+2. Run `npm install` to install dependencies.
+3. Run `npm run build` to build the plugin.
 4. Run `./publish_plugin_local.sh` to copy the plugin files to your Obsidian Vault's plugin folder. [Learn how to do this in the Wiki](https://github.com/shenoy-anurag/obsidian-image-border-style/wiki/Local-Plugin-Testing-Script).
 
 ## Support me if you like this project!
