@@ -132,8 +132,7 @@ export class ApplyImageBorder implements PluginValue {
 	}
 
 	applyBorderColor(img: HTMLImageElement) {
-		// const imageBorderColorClassName = "image-border-" + this.themeAwareBorderColor.getColorClass();
-		const imageBorderColorClassName = "image-border-color-light";
+		const imageBorderColorClassName = "image-border-" + this.themeAwareBorderColor.getColorClass();
 		img.classList.add(imageBorderColorClassName);
 	}
 
@@ -277,11 +276,21 @@ class ImageStyleSettingTab extends PluginSettingTab {
 		containerEl.createEl("h2", { text: "Border Stroke" });
 
 		const borderWidthSetting = new Setting(containerEl)
-
-		borderWidthSetting
 			.setName("Border Width")
 			.setDesc("Select the global border width for images.")
-			// .addSlider(slider => slider.setDynamicTooltip())
+			.addExtraButton(button => button
+				.setIcon('reset')
+				.onClick(async () => {
+					this.plugin.settings.borderWidth = DEFAULT_SETTINGS.borderWidth;
+					await this.plugin.saveSettings();
+					// Update the slider UI by finding the input element and setting its value
+					const sliderInput = borderWidthSetting.settingEl.querySelector('input[type="range"]') as HTMLInputElement;
+					if (sliderInput) {
+						sliderInput.value = DEFAULT_SETTINGS.borderWidth.toString();
+						// Trigger the input event to update any listeners
+						sliderInput.dispatchEvent(new Event('input', { bubbles: true }));
+					}
+				}))
 			.addSlider((number) =>
 				number
 					.setLimits(0, 5, 1)
@@ -291,7 +300,7 @@ class ImageStyleSettingTab extends PluginSettingTab {
 						this.plugin.settings.borderWidth = value
 						await this.plugin.saveSettings()
 					})
-			)
+			);
 
 		containerEl.createEl("h2", { text: "Border Color" });
 

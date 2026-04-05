@@ -51,6 +51,9 @@ If your plugin does not need CSS, delete this file.
 .image-border-width-heavy {
 	border-width: 5px;
 }
+.image-border-solid {
+	border-style: solid;
+}
 .image-border-color-light {
 	border-color: #e0e0e0;
 	/* border-color: #f0f0f0; */
